@@ -13,9 +13,10 @@ RUN apt update && \
     libboost-system-dev libboost-thread-dev libboost-program-options-dev \
     libboost-test-dev libboost-all-dev
 
-# Build AFL++
+# Build AFL++ with QEMU mode
 WORKDIR /AFLplusplus
-RUN STATIC=1 make -j64 distrib
+RUN cd qemu_mode && \
+    NO_CHECKOUT=1 CPU_TARGET=x86_64 STATIC=1 ./build_qemu_support.sh
 
 # Clone and build vSomeIP
 WORKDIR /
