@@ -26,8 +26,9 @@ RUN git clone https://github.com/COVESA/vsomeip && \
 
 # Setup fuzzing project
 WORKDIR /
-RUN mkdir vsomeip-fuzzing
-RUN wget https://raw.githubusercontent.com/maoyixie/vsomeip-fuzzing_x64/main/src/fuzzing.cpp && \
+RUN mkdir vsomeip-fuzzing && \
+    cd vsomeip-fuzzing && \
+    wget https://raw.githubusercontent.com/maoyixie/vsomeip-fuzzing_x64/main/src/fuzzing.cpp && \
     wget https://raw.githubusercontent.com/maoyixie/vsomeip-fuzzing_x64/main/src/fuzzing.hpp && \
     wget https://raw.githubusercontent.com/maoyixie/vsomeip-fuzzing_x64/main/CMakeLists.txt && \
     mkdir build && \
@@ -37,8 +38,8 @@ RUN wget https://raw.githubusercontent.com/maoyixie/vsomeip-fuzzing_x64/main/src
 
 # Prepare fuzzing directory and copy executable
 WORKDIR /
-RUN mkdir fuzzing
-RUN cd fuzzing && \
+RUN mkdir fuzzing && \
+    cd fuzzing && \
     mkdir input output && \
     cp /vsomeip-fuzzing/build/fuzzing /fuzzing/
 
