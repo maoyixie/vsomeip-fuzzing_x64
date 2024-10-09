@@ -22,6 +22,7 @@ RUN cd qemu_mode && \
 WORKDIR /
 RUN git clone https://github.com/COVESA/vsomeip && \
     cd vsomeip && \
+    git checkout 637fb6ccce969f89621660dd481badb29a90d661 && \
     cmake -Bbuild -DCMAKE_INSTALL_PREFIX=../install_folder -DENABLE_SIGNAL_HANDLING=1 . && \
     cmake --build build --target install -- -j64
 
